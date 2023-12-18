@@ -10,7 +10,7 @@ import com.quiz.lesson02.bo.StoreBO;
 import com.quiz.lesson02.domain.Store;
 
 @RestController
-public class Lesson01Quiz01RestController {
+public class Lesson02Quiz01RestController {
 
 	@Autowired
 	private StoreBO storeBO;
