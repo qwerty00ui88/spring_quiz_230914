@@ -43,7 +43,7 @@
  	</select>
  	
  	<!-- 3강 1-3 문제 -->
- 	<select id="selectRealEstateListByAreaAndPrice" parameterType="int" resultType="com.quiz.lesson03.domain.RealEstate">
+ 	<select id="selectRealEstateListByAreaAndPrice" parameterType="map" resultType="com.quiz.lesson03.domain.RealEstate">
  		SELECT
  			`id`
 			, `realtorId`
