@@ -91,6 +91,7 @@
  		)
  	</insert>
  	
+ 	<!-- 3강 2-2 문제 -->
  	<insert id="insertRealEstateAsField" parameterType="map">
  		INSERT INTO `real_estate`
  		(
@@ -115,4 +116,15 @@
 			, NOW()
  		)
  	</insert>
+ 	
+ 	<!-- 3강 3-1 문제 -->
+ 	<update id="updateRealEstateById" parameterType="map">
+ 		UPDATE `real_estate`
+ 		SET
+ 			`type` = #{type}
+ 			, `price`= #{price}
+ 			, `updatedAt` = NOW()
+ 		WHERE
+ 			`id` = #{id}
+ 	</update>
  </mapper>
