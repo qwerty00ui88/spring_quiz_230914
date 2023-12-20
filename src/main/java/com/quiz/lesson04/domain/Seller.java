@@ -6,7 +6,7 @@ public class Seller {
 	private int id;
 	private String nickname;
 	private String profileImageUrl;
-	private double temperature;
+	private Double temperature;
 	private Date createdAt;
 	private Date updatedAt;
 	
@@ -28,10 +28,10 @@ public class Seller {
 	public void setProfileImageUrl(String profileImageUrl) {
 		this.profileImageUrl = profileImageUrl;
 	}
-	public double getTemperature() {
+	public Double getTemperature() {
 		return temperature;
 	}
-	public void setTemperature(double temperature) {
+	public void setTemperature(Double temperature) {
 		this.temperature = temperature;
 	}
 	public Date getCreatedAt() {
