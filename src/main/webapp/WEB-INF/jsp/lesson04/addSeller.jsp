@@ -16,7 +16,7 @@
 		<form method="post" action="/lesson04/quiz01/add-seller">
 			<div class="form-group">
 				<label for="nickname">닉네임</label>
-				<input id="nickname" type="text" name="nickname" class="form-control col-4">
+				<input id="nickname" type="text" name="nickname" class="form-control col-3">
 			</div>
 			<div class="form-group">
 				<label for="profileImageUrl">프로필 사진 url</label>
@@ -24,7 +24,7 @@
 			</div>
 			<div class="form-group">
 				<label for="temperature">온도</label>
-				<input id="temperature" type="text" name="temperature" class="form-control col-4">
+				<input id="temperature" type="text" name="temperature" class="form-control col-3">
 			</div>
 			<button type="submit" class="btn btn-primary">추가</button>
 		</form>

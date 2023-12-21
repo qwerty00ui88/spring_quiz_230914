@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>최근 가입한 판매자 정보</title>
+<title>${title}</title>
 <!-- BootStrap -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
@@ -12,10 +12,10 @@
 </head>
 <body>
 	<div class="container">
-		<h1>판매자 정보</h1>
-		<img src="${result.profileImageUrl}" alt="프로필 이미지" width="300">
-		<div class="display-4">${result.nickname}</div>
-		<h3 class="font-weight-bold text-warning">${result.temperature}</h3>
+		<h1>${title}</h1>
+		<img src="${seller.profileImageUrl}" alt="판매자 이미지" width="300">
+		<div class="display-3">${seller.nickname}</div>
+		<div class="display-4 text-warning font-weight-bold">${seller.temperature}</div>
 	</div>
 </body>
 </html>

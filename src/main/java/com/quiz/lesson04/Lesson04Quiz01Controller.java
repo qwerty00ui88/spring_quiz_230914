@@ -27,8 +27,8 @@ public class Lesson04Quiz01Controller {
 	@PostMapping("/add-seller")
 	public String addSeller(
 			@RequestParam("nickname") String nickname, 
-			@RequestParam("profileImageUrl") String profileImageUrl, 
-			@RequestParam("temperature") double temperature) {
+			@RequestParam(value = "profileImageUrl", required = false) String profileImageUrl, 
+			@RequestParam(value = "temperature") double temperature) {
 		
 		// insert
 		sellerBO.addSeller(nickname, profileImageUrl, temperature);
@@ -39,18 +39,27 @@ public class Lesson04Quiz01Controller {
 		return "lesson04/afterAddSeller";
 	}
 	
-	// http://localhost/lesson04/quiz01/latest-seller-view
-	@GetMapping("/latest-seller-view")
-	public String latestSellerView(Model model) {
+	// http://localhost/lesson04/quiz01/seller-info-view
+	// http://localhost/lesson04/quiz01/seller-info-view?id=1
+	@GetMapping("/seller-info-view")
+	public String sellerInfoView(
+			@RequestParam(value = "id", required = false) Integer id, 
+			Model model) {
 		
 		// get
-		Seller seller = sellerBO.getLatestSeller();
+		Seller seller = null;
+		if(id == null) {
+			seller = sellerBO.getLatestSeller();
+		} else {
+			seller = sellerBO.getSellerById(id);
+		}
 		
 		// 모델 등록
-		model.addAttribute("result", seller);
+		model.addAttribute("seller", seller);
+		model.addAttribute("title", "판매자 정보");
 		
 		// 뷰 경로 반환
-		return "lesson04/latestSeller";
+		return "lesson04/sellerInfo";
 	}
 	
 }
