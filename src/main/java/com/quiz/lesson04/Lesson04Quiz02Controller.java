@@ -28,17 +28,14 @@ public class Lesson04Quiz02Controller {
 	public String addRealtor(
 			@ModelAttribute Realtor realtor, 
 			Model model) {
-		// insert
+		// insert => 방금 추가된 pk 받아옴 => realtor에 세팅
 		realtorBO.addRealtor(realtor);
 		
-		// get id
-		int id = realtor.getId();
-		
-		// select
-		Realtor newRealtor = realtorBO.getRealtorById(id);
+		// realtor에 세팅된 id로 객체 다시 조회(방금 추가됨)
+		Realtor latestRealtor = realtorBO.getRealtorById(realtor.getId());
 		
 		// model
-		model.addAttribute("realtor", newRealtor);
+		model.addAttribute("realtor", latestRealtor);
 		
 		// view
 		return "lesson04/afterAddRealtor";
