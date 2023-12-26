@@ -22,13 +22,12 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach items="${musicRanking}" var="music" varStatus="status">
+			<c:forEach items="${musicRanking}" var="rank" varStatus="status">
 			<tr>
 				<td>${status.count}</td>
-				<td>${status.current}</td>
+				<td>${rank}</td>
 			</tr>
 			</c:forEach>
-			
 		</tbody>
 	</table>
 	</div>
