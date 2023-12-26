@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,10 +30,13 @@
 			<tr>
 				<td>${status.count}</td>
 				<td>${member.name}</td>
-				<td>${member.phoneNumber}</td>
-				<td>${member.nationality}</td>
-				<td>${member.email}</td>
-				<td>${member.introduce}</td>
+				<td>${fn:startsWith(member.phoneNumber, '010') ? member.phoneNumber : '유효하지 않은 전화번호'}</td>
+				<td>${fn:replace(member.nationality, '삼국시대', '삼국 -')}</td>
+				<td><b>${fn:split(member.email, '@')[0]}</b>@${fn:split(member.email, '@')[1]}</td>
+				<td class="text-left">
+					${fn:length(member.introduce) > 15 ? fn:substring(member.introduce, 0, 15) : member.introduce}
+					${fn:length(member.introduce) > 15 ? '...' : ''}
+				</td>
 			</tr>
 			</c:forEach>
 		</tbody>
