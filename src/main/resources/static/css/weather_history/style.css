@@ -1,1 +1,15 @@
 @charset "UTF-8";
+
+.contents {
+	min-height: calc(100vh - 48px);
+}
+
+.weather-history {
+	padding: 1rem 5rem;
+}
+
+label {
+	white-space: nowrap;
+	margin: 0;
+	padding: 1rem;
+}

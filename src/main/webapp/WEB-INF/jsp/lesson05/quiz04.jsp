@@ -24,9 +24,6 @@
 <body>
 	<div class="container">
 		<h1>회원 정보 리스트</h1>
-		<img src="/img/sunny.jpg" />
-		
-		
 		<table class="table text-center">
 			<thead>
 				<tr>

@@ -40,7 +40,6 @@ public class WeatherHistoryController {
 		return "weather_history/addWeather";
 	}
 
-
 	@PostMapping("/add-weather")
 	public String addWeather(
 			@RequestParam("date") Date date
