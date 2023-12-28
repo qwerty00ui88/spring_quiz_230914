@@ -1,11 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>리뷰</title>
+<title>가게 목록</title>
 <!-- BootStrap -->
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
@@ -24,24 +23,19 @@
 	href="/css/quiz06/style.css">
 </head>
 <body>
-	<div id="wrap">
-		<header>배탈의 민족</header>
+	<div id="wrap" class="container">
+		<header class="bg-info text-light p-3">
+			<h3 class="mb-0">배탈의 민족</h3>
+		</header>
 		<section>
-			<div class="display-4"></div>
-			<c:if test="${reviewList.isEmpty()}">
-				<div>작성된 리뷰가 없습니다.</div>
-			</c:if>
-			<c:forEach items="${reviewList}" var="review">
-				<div>
-					<div>${review.userName}</div>
-					<div>${review.point}</div>
-					<div>${review.review}</div>
-					<div>${review.menu}</div>
-				</div>
-			</c:forEach>
+			<div class="display-4 mt-2 mb-2">${title}</div>
+			<jsp:include page="${page}.jsp" />
 		</section>
-		<footer> </footer>
+		<footer>
+			<hr>
+			<h5>(주)우와한형제</h5>
+			<div class="mb-3 text-secondary">고객센터 : 1500-1500</div>
+		</footer>
 	</div>
-
 </body>
 </html>

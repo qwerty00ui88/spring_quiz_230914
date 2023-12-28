@@ -1,9 +1,13 @@
 @charset "UTF-8";
 
-a {
+a, a:hover {
+	text-decoration: none;
 	color: black;
 }
 
-a:hover {
-	color: black;
+.tag {
+	background-color: #e1e1e1;
+	border-radius: 0.2rem;
+	padding: 0 0.3rem;
+	width: fit-content;
 }

@@ -26,26 +26,36 @@ public class Quiz06Controller {
 	// http://localhost/quiz06/store-list-view
 	@GetMapping("/store-list-view")
 	public String storeListView(Model model) {
+		
 		// select
 		List<Store> storeList = storeBO.getStoreList();
+		
 		// model
+		model.addAttribute("page", "store");
+		model.addAttribute("title", "우리동네 가게");
 		model.addAttribute("storeList", storeList);
+		
 		// view
-		return "quiz06/storeList";
+		return "quiz06/template";
 	}
 
-	// http://localhost/quiz06/reviews-view?storeId=1
-	@GetMapping("/reviews-view")
-	public String reviewsView(
+	// http://localhost/quiz06/review-list-view?storeId=1&storeName=교촌치킨
+	@GetMapping("/review-list-view")
+	public String reviewListView(
 			@RequestParam("storeId") int storeId
+			, @RequestParam("storeName") String storeName
 			, Model model) {
+		
 		// select
 		List<Review> reviewList = reviewBO.getReviewListByStoreId(storeId);
 		
 		// model
+		model.addAttribute("page", "review");
+		model.addAttribute("title", storeName + " - 리뷰");
 		model.addAttribute("reviewList", reviewList);
 		
-		return "quiz06/reviews";
+		// view
+		return "quiz06/template";
 	}
 
 }
