@@ -10,6 +10,7 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
 	integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
 	crossorigin="anonymous">
+<!-- BootStrap의 jQuery 원본으로 변경 -->
 <script src="https://code.jquery.com/jquery-3.7.1.js"
 	integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
 	crossorigin="anonymous"></script>
@@ -24,11 +25,6 @@
 <%-- 내가 만든 외부 스타일시트 --%>
 <link rel="stylesheet" type="text/css"
 	href="/css/weather_history/style.css">
-<script>
-	$(document).ready(function() {
-		$("#date").datepicker();
-	});
-</script>
 </head>
 <body>
 	<div id="wrap">
@@ -62,7 +58,6 @@
 			<section class="weather-history col-10 d-flex flex-column">
 				<h3>날씨 입력</h3>
 				<form method="post" action="/weather-history/add-weather">
-
 					<div class="d-flex justify-content-between mt-5">
 						<div class="d-flex align-items-center">
 							<label for="date" class="input-label">날짜</label> <input
@@ -139,5 +134,12 @@
 			</div>
 		</footer>
 	</div>
+<script>
+	$(document).ready(function() {
+		$("#date").datepicker({
+			dateFormat: "yy-mm-dd"
+		});
+	});
+</script>
 </body>
 </html>
