@@ -16,7 +16,7 @@
 			<c:set var="point" value="${review.point}" />
 			<c:forEach var="i" begin="1" end="5" step="1">
 				<c:choose>
-					<%-- 1보다 큰 경우: fill --%>
+					<%-- 1 이상인 경우: fill --%>
 					<c:when test="${point >= 1}">
 						<img src="/img/star_fill.png" alt="fill" width="15" />
 					</c:when>
