@@ -16,7 +16,7 @@
 				<div class="d-flex align-items-center">
 					<div class="font-weight-bold mr-2">${review.userName}</div>
 					<c:set var="point" value="${review.point}" />
-					<c:forEach var="i" begin="1" end="5" step="1">
+					<c:forEach begin="1" end="5">
 						<c:choose>
 							<%-- 1 이상인 경우: fill --%>
 							<c:when test="${point >= 1}">
