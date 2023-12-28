@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+#wrap {
+	max-width: 480px
+}
+
 a, a:hover {
 	text-decoration: none;
 	color: black;
