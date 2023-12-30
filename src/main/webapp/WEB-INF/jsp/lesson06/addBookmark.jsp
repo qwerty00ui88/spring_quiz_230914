@@ -62,7 +62,7 @@
 					, data: {"name":name, "url":url}
 				
 					// response
-					, success: function() {
+					, success: function(data) {
 						if(data == "성공") {
 							location.href = "/lesson06/quiz01/after-add-bookmark-view";
 						}
