@@ -56,12 +56,14 @@
 					, data: {"id":id}
 					, success: function(data) {
 						if(data.is_deleted) {
-							alert(id + "번이 삭제되었습니다.");
-							location.href = "/lesson06/bookmark-list-view"
+							alert("id " + id + "번이 삭제되었습니다.");
+							location.href = "/lesson06/bookmark-list-view";
+						} else {
+							alert("해당 id가 존재하지 않습니다.");
 						}
 					}
 					, error: function(request, status, error) {
-						alert("삭제에 실패했습니다.");
+						alert("삭제에 실패했습니다. 관리자에게 문의하세요.");
 					}
 				})
 				
