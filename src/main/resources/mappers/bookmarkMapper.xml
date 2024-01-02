@@ -3,7 +3,7 @@
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
  <mapper namespace="com.quiz.lesson06.mapper.BookmarkMapper">
- 	<insert id="insertBookmart" parameterType="map">
+ 	<insert id="insertBookmark" parameterType="map">
  		INSERT INTO `bookmark`
  		(
 			`name`

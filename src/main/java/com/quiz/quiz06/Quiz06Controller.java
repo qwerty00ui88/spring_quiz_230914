@@ -20,6 +20,7 @@ public class Quiz06Controller {
 
 	@Autowired
 	private StoreBO storeBO;
+	
 	@Autowired
 	private ReviewBO reviewBO;
 	

@@ -24,13 +24,16 @@
 		<h1>즐겨 찾기 추가하기</h1>
 		<div>
 			<div class="form-group">
-				<label for="name">제목</label> <input type="text" id="name"
-					name="name" class="form-control">
+				<label for="name">제목</label> <input type="text" id="name" class="form-control">
 			</div>
 			<div class="form-group">
-				<label for="url">주소</label> <input type="text" id="url" name="url"
-					class="form-control">
+				<label for="url">주소</label>
+				<div class="d-flex">
+					<input type="text" id="url" class="form-control">
+					<button type="button" id="urlCheckBtn" class="btn btn-info">중복확인</button>
+				</div>
 			</div>
+			<small id="urlStatusArea"></small>
 			<button type="button" id="addBtn" class="btn btn-success col-12">추가</button>
 		</div>
 	</div>
@@ -38,41 +41,49 @@
 		$(document).ready(function() {
 			$("#addBtn").on("click", function() {
 				// validation
-				let name = $("#name").val();
+				let name = $("#name").val().trim();
+				let url = $("#url").val().trim();
+				
 				if(name == "") {
 					alert("제목을 입력하세요");
 					return;
 				}
 				
-				let url = $("#url").val();
 				if(url == "") {
 					alert("주소를 입력하세요");
 					return;
 				}
 				
 				if(url.startsWith("http://") == false && url.startsWith("https://") == false) {
-					alert("프로토콜을 입력하세요")
+					alert("주소 형식이 잘못되었습니다")
 					return;
 				}
 				
-				// ajax
+				// AJAX
 				$.ajax({
+					// request
 					type: "POST"
-					, url: "/lesson06/quiz01/add-bookmark"
+					, url: "/lesson06/add-bookmark"
 					, data: {"name":name, "url":url}
 				
-					// response
-					, success: function(data) {
-						if(data == "성공") {
-							location.href = "/lesson06/quiz01/after-add-bookmark-view";
+					// response - call back 함수
+					, success: function(data) { // data: JSON String => parsing(jQuery ajax 메서드) => dictionary
+						if(data.code == 200) {
+							// 목록 화면으로 이동
+							location.href = "/lesson06/bookmark-list-view";
 						}
 					}
 					, error: function(request, status, error) {
-						alert(request);
-						alert(status);
-						alert(error);
+						alert("추가하는데 실패했습니다. 관리자에게 문의해주세요.");
 					}
 				});
+			})
+			
+			$("#urlCheckBtn").on("click", function() {
+				
+				let url = $("#url").val().trim();
+				
+
 			})
 		})
 	</script>
