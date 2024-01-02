@@ -28,8 +28,8 @@
 			</div>
 			<div class="form-group">
 				<label for="url">주소</label>
-				<div class="d-flex">
-					<input type="text" id="url" class="form-control">
+				<div class="d-flex justify-content-between">
+					<input type="text" id="url" class="form-control col-10">
 					<button type="button" id="urlCheckBtn" class="btn btn-info">중복확인</button>
 				</div>
 			</div>
@@ -80,10 +80,30 @@
 			})
 			
 			$("#urlCheckBtn").on("click", function() {
+				// 하위 태그 삭제
+				$("#urlStatusArea").empty();
 				
 				let url = $("#url").val().trim();
 				
-
+				// AJAX
+				$.ajax({
+					// request
+					type: "POST"
+					, url: "/lesson06/is-duplication-url"
+					, data: {"url":url}
+					
+					// response
+					, success: function(data) {
+						if(data.is_duplication) {
+							$("#urlStatusArea").append('<span class="text-danger">중복된 url 입니다.</span>');
+						} else {
+							$("#urlStatusArea").append('<span class="text-success">저장 가능한 url 입니다.</span>');
+						}
+					}
+					, error: function(request, status, error) {
+						alert("주소 중복확인에 실패했습니다.")
+					}
+				})
 			})
 		})
 	</script>

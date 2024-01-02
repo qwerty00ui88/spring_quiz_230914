@@ -11,9 +11,9 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
 	integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
 	crossorigin="anonymous">
-<script
-	src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
-	integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+<!-- AJAX를 사용하려면 jquery 원본 필요 -->
+<script src="https://code.jquery.com/jquery-3.7.1.js"
+	integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
 	crossorigin="anonymous"></script>
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
@@ -29,6 +29,7 @@
 					<th>No.</th>
 					<th>이름</th>
 					<th>주소</th>
+					<th></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -37,10 +38,35 @@
 						<td>${bookmark.id}</td>
 						<td>${bookmark.name}</td>
 						<td><a href="${bookmark.url}" target="_blank">${bookmark.url}</a></td>
+						<td><button type="button" id="${bookmark.id}" class="deleteBtn btn btn-danger">삭제</button></td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
 	</div>
+	<script>
+		$(document).ready(function() {
+			$(".deleteBtn").on("click", function() {
+				let id = Number($(this).attr("id"));
+				
+				// AJAX
+				$.ajax({
+					type:"GET"
+					, url: "/lesson06/delete-bookmark"
+					, data: {"id":id}
+					, success: function(data) {
+						if(data.is_deleted) {
+							alert(id + "번이 삭제되었습니다.");
+							location.href = "/lesson06/bookmark-list-view"
+						}
+					}
+					, error: function(request, status, error) {
+						alert("삭제에 실패했습니다.");
+					}
+				})
+				
+			})
+		})
+	</script>
 </body>
 </html>

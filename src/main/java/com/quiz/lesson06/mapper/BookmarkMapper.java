@@ -16,4 +16,8 @@ public interface BookmarkMapper {
 	
 	public List<Bookmark> selectBookmarkList();
 	
+	public boolean isDuplicationByUrl(String url);
+	
+	public int deleteBookmarkById(int id);
+	
 }
