@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,17 +29,52 @@
 			</div>
 			<div class="form-group">
 				<label for="url">주소</label>
-				<div class="d-flex justify-content-between">
+				<div class="form-inline">
 					<input type="text" id="url" class="form-control col-10">
-					<button type="button" id="urlCheckBtn" class="btn btn-info">중복확인</button>
+					<button type="button" id="duplicationBtn" class="btn btn-info">중복확인</button>
 				</div>
 			</div>
-			<small id="urlStatusArea"></small>
+			<small id="duplicationText" class="text-danger d-none">중복된 url 입니다.</small>
+			<small id="availableUrlText" class="text-success d-none">저장 가능한 url 입니다.</small>
 			<button type="button" id="addBtn" class="btn btn-success col-12">추가</button>
 		</div>
 	</div>
 	<script>
 		$(document).ready(function() {
+			// 중복 확인
+			$("#duplicationBtn").on("click", function() {
+				let url = $("#url").val().trim();
+				if(!url) {
+					alert("url을 입력하세요.")
+					return;
+				}
+				
+				// AJAX - DB 중복 확인
+				$.ajax({
+					// request
+					type: "POST"
+					, url: "/lesson06/is-duplication-url"
+					, data: {"url":url}
+					
+					// response
+					, success: function(data) { // data:JSON => dictionary
+						// {"code":200, "is_duplication":true} => 중복
+						if(data.is_duplication) {
+							// 중복
+							$("#availableUrlText").addClass("d-none");
+							$("#duplicationText").removeClass("d-none");
+						} else {
+							// 중복 아님
+							$("#duplicationText").addClass("d-none");
+							$("#availableUrlText").removeClass("d-none");
+						}
+					}
+					, error: function(request, status, error) {
+						alert("중복확인에 실패했습니다.")
+					}
+				})
+			})
+			
 			$("#addBtn").on("click", function() {
 				// validation
 				let name = $("#name").val().trim();
@@ -77,33 +113,6 @@
 						alert("추가하는데 실패했습니다. 관리자에게 문의해주세요.");
 					}
 				});
-			})
-			
-			$("#urlCheckBtn").on("click", function() {
-				// 하위 태그 삭제
-				$("#urlStatusArea").empty();
-				
-				let url = $("#url").val().trim();
-				
-				// AJAX
-				$.ajax({
-					// request
-					type: "POST"
-					, url: "/lesson06/is-duplication-url"
-					, data: {"url":url}
-					
-					// response
-					, success: function(data) {
-						if(data.is_duplication) {
-							$("#urlStatusArea").append('<span class="text-danger">중복된 url 입니다.</span>');
-						} else {
-							$("#urlStatusArea").append('<span class="text-success">저장 가능한 url 입니다.</span>');
-						}
-					}
-					, error: function(request, status, error) {
-						alert("주소 중복확인에 실패했습니다.")
-					}
-				})
 			})
 		})
 	</script>

@@ -29,9 +29,13 @@
 		FROM
 			`bookmark`
  	</select>
- 	<select id="isDuplicationByUrl" parameterType="string" resultType="boolean">
+ 	<select id="selectBookmarkListByUrl" parameterType="string" resultType="com.quiz.lesson06.domain.Bookmark">
  		SELECT
- 			COUNT(*)
+ 			`id`
+ 			, `name`
+			, `url`
+			, `createdAt`
+			, `updatedAt`
  		FROM
  			`bookmark`
  		WHERE
