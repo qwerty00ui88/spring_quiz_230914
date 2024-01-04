@@ -1,6 +1,5 @@
 package com.quiz.booking.mapper;
 
-import java.util.Date;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
@@ -15,11 +14,14 @@ public interface BookingMapper {
 	
 	public int deleteBookingById(int id);
 	
-	public int insertBooking(
+	public void insertBooking(
 			@Param("name") String name, 
-			@Param("date") Date date, 
+			@Param("date") String date, 
 			@Param("day") int day, 
 			@Param("headcount") int headcount, 
 			@Param("phoneNumber") String phoneNumber);
 	
+	public List<Booking> selectBookingListByNamePhoneNumber(
+			@Param("name") String name, 
+			@Param("phoneNumber") String phoneNumber);
 }
