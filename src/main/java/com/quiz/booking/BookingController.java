@@ -97,13 +97,18 @@ public class BookingController {
 			@RequestParam("name") String name, 
 			@RequestParam("phoneNumber") String phoneNumber) {
 		// select
-		List<Booking> BookingListByNamePhoneNumber = bookingBO.getBookingListByNamePhoneNumber(name, phoneNumber);
+		Booking nearestBooking = bookingBO.getBookingByNamePhoneNumber(name, phoneNumber);
 		
 		// result
 		Map<String, Object> result = new HashMap<>();
-		result.put("code", 200);
-		result.put("result", BookingListByNamePhoneNumber);
-		
+		if(nearestBooking != null) {
+			result.put("code", 200);
+			result.put("nearestBooking", nearestBooking);
+		} else {
+			result.put("code", 500);
+			result.put("error_message", "예약 내역이 없습니다.");
+		}
+
 		return result;
 	}
 }

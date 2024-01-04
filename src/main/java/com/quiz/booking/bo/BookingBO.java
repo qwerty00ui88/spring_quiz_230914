@@ -1,10 +1,10 @@
 package com.quiz.booking.bo;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.quiz.booking.domain.Booking;
 import com.quiz.booking.mapper.BookingMapper;
@@ -27,9 +27,17 @@ public class BookingBO {
 		bookingMapper.insertBooking(name, date, day, headcount, phoneNumber);
 	}
 	
-	// 컨트롤러에게 1개만 넘겨주기
-	public List<Booking> getBookingListByNamePhoneNumber(String name, String phoneNumber) {
-		return bookingMapper.selectBookingListByNamePhoneNumber(name, phoneNumber);
+	public Booking getBookingByNamePhoneNumber(String name, String phoneNumber) {
+		
+		Date currentDate = new Date();
+		Booking nearestBooking = null;
+				
+		for(Booking x : bookingMapper.selectBookingListByNamePhoneNumber(name, phoneNumber)) {
+			if(currentDate.compareTo(x.getDate()) > 0) continue;
+			else if(nearestBooking == null || nearestBooking.getDate().compareTo(x.getDate()) >= 0) nearestBooking = x;
+		}
+		
+		return nearestBooking;
 	}
 
 }

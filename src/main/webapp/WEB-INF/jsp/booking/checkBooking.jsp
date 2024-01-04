@@ -46,7 +46,6 @@
 				</div>
 			</section>
 			<section class="confirm col-4">
-				<!-- 예약 확인 라디오 버튼-->
 				<div class="text-white mt-3">
 					<span class="reserve-confirm">예약 확인</span>
 				</div>
@@ -60,8 +59,6 @@
 						<span class="text-white mr-2">전화번호</span> <input type="text"
 							id="phoneNumber" class="form-control col-9">
 					</div>
-
-					<!-- 버튼 -->
 					<div class="d-flex justify-content-end mt-2">
 						<button type="button" id="checkBookingBtn" class="btn btn-success">조회하기</button>
 					</div>
@@ -89,9 +86,7 @@
 							// 날짜 영역 datePicker로 선택하기
 							$('#reserveDate').datepicker({
 								dateFormat : "yy년 mm월 dd일" // 2021년 00월 00일
-								,
-								minDate : 0
-							// 오늘 날짜 이후로 선택
+								, minDate : 0 // 오늘 날짜 이후로 선택
 							});
 
 							// 조회하기 버튼 클릭
@@ -102,7 +97,7 @@
 												let name = $('#name').val().trim();
 												let phoneNumber = $('#phoneNumber').val().trim();
 												
-												// 비회원 validation
+												// validation
 												if (name == '') {
 													alert("이름을 입력하세요");
 													return;
@@ -128,16 +123,18 @@
 													},
 													success: function(data) {
 														if(data.code == 200) {
-																alert("이름 : " + data.result[0].name 
-																		+ "예약날짜 : " + data.result[0].date
-																		+ "숙박일수 : " + data.result[0].day
-																		+ "숙박인원 : " + data.result[0].headcount
-																		+ "전화번호 : " + data.result[0].phoneNumber);
+															let {nearestBooking} = data;
+															alert("이름 : " + nearestBooking.name 
+																	+ "\n날짜 : " + nearestBooking.date.slice(0, 10)
+																	+ "\n일수 : " + nearestBooking.day
+																	+ "\n인원 : " + nearestBooking.headcount
+																	+ "\n상태 : " + nearestBooking.state);
+														} else if(data.code == 500) {
+															alert(data.error_message);
 														}
 													}, 
 													error: function(request, status, error) {
-														console.log({request, status, error});
-														alert("요청 실패");
+														alert("조회에 실패했습니다. 관리자에게 문의하세요.");
 													}
 												})
 											});
@@ -153,10 +150,10 @@
 										bannerSrcArr[currentIndex]);
 								currentIndex++;
 
-								if (currentIndex > bannerSrcArr.length) { // 인덱스 값이 배열의 크기를 넘으면 0으로(처음 이미지) 세팅
+								if (currentIndex > bannerSrcArr.length) {
 									currentIndex = 0;
 								}
-							}, 3000); // 3초에 한번씩 함수 실행
+							}, 3000);
 						});
 	</script>
 </body>
