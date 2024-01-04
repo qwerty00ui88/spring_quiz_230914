@@ -33,22 +33,13 @@
 	<div id="wrap" class="container">
 		<header
 			class="bg-light d-flex justify-content-center align-items-center">
-			<div class="display-4">통나무 펜션</div>
+			<jsp:include page="header.jsp" />
 		</header>
 		<nav>
-			<ul class="nav nav-fill">
-				<li class="nav-item"><a href="#"
-					class="nav-link text-white font-weight-bold">펜션소개</a></li>
-				<li class="nav-item"><a href="#"
-					class="nav-link text-white font-weight-bold">객실보기</a></li>
-				<li class="nav-item"><a href="#"
-					class="nav-link text-white font-weight-bold">예약안내</a></li>
-				<li class="nav-item"><a href="#"
-					class="nav-link text-white font-weight-bold">커뮤니티</a></li>
-			</ul>
+			<jsp:include page="nav.jsp" />
 		</nav>
 		<section class="banner bg-info">
-			<img src="/img/test06_banner1.jpg" alt="banner" class="w-100">
+			<img src="/img/test06_banner4.jpg" alt="banner" id="bannerImage" class="w-100">
 		</section>
 		<section class="reserve bg-primary d-flex">
 			<section
@@ -117,10 +108,7 @@
 			</section>
 		</section>
 		<footer class="d-flex align-items-center pl-3">
-			<div class="address">
-				제주특별자치도 제주시 애월읍<br> 사업자등록번호: 111-22-255222 / 농어촌민박사업자지정 /
-				대표:김통목<br> Copyright 2025 tongnamu. All right reserved.
-			</div>
+			<jsp:include page="footer.jsp" />
 		</footer>
 	</div>
 
@@ -143,9 +131,7 @@
 					// 2-2. 날짜 영역 datePicker로 선택하기
 					$('#reserveDate').datepicker({
 						dateFormat : "yy년 mm월 dd일" // 2021년 00월 00일
-						,
-						minDate : 0
-					// 오늘 날짜 이후로 선택
+						, minDate : 0 // 오늘 날짜 이후로 선택
 					});
 
 					// 3. 조회하기 버튼 클릭
@@ -201,9 +187,8 @@
 							});
 
 					// 4. 이미지 3초 간격으로 변경하기
-
-					let bannerSrcArr = [ 'banner1.jpg', 'banner2.jpg',
-							'banner3.jpg', 'banner4.jpg' ];
+					let bannerSrcArr = ['/img/test06_banner1.jpg', '/img/test06_banner2.jpg',
+							'/img/test06_banner3.jpg', '/img/test06_banner4.jpg'];
 					let currentIndex = 0;
 					setInterval(function() {
 						$('#bannerImage').attr('src',
