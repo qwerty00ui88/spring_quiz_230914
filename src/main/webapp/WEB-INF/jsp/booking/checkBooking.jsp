@@ -123,12 +123,11 @@
 													},
 													success: function(data) {
 														if(data.code == 200) {
-															let {nearestBooking} = data;
-															alert("이름 : " + nearestBooking.name 
-																	+ "\n날짜 : " + nearestBooking.date.slice(0, 10)
-																	+ "\n일수 : " + nearestBooking.day
-																	+ "\n인원 : " + nearestBooking.headcount
-																	+ "\n상태 : " + nearestBooking.state);
+															alert("이름 : " + data.result.name 
+																	+ "\n날짜 : " + data.result.date.slice(0, 10)
+																	+ "\n일수 : " + data.result.day
+																	+ "\n인원 : " + data.result.headcount
+																	+ "\n상태 : " + data.result.state);
 														} else if(data.code == 500) {
 															alert(data.error_message);
 														}

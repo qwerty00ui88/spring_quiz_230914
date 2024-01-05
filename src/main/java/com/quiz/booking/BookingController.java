@@ -96,19 +96,19 @@ public class BookingController {
 	public Map<String, Object> checkBooking(
 			@RequestParam("name") String name, 
 			@RequestParam("phoneNumber") String phoneNumber) {
-		// select
-		Booking nearestBooking = bookingBO.getBookingByNamePhoneNumber(name, phoneNumber);
 		
-		// result
+		// {"code":200 "result":booking 객체}
+		// {"code":200 "result":{"name":"신보람", ...}}
 		Map<String, Object> result = new HashMap<>();
-		if(nearestBooking != null) {
-			result.put("code", 200);
-			result.put("nearestBooking", nearestBooking);
-		} else {
+		
+		Booking booking = bookingBO.getBookingByNamePhoneNumber(name, phoneNumber);
+		if(booking == null) {
 			result.put("code", 500);
-			result.put("error_message", "예약 내역이 없습니다.");
+			result.put("error_message", "예약 내역이 존재하지 않습니다.");	
+		} else {
+			result.put("code", 200);
+			result.put("result", booking);
 		}
-
 		return result;
 	}
 }

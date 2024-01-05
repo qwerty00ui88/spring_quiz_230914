@@ -27,17 +27,11 @@ public class BookingBO {
 		bookingMapper.insertBooking(name, date, day, headcount, phoneNumber);
 	}
 	
+	// 없으면 null, 있으면 객체
 	public Booking getBookingByNamePhoneNumber(String name, String phoneNumber) {
-		
-		Date currentDate = new Date();
-		Booking nearestBooking = null;
-				
-		for(Booking x : bookingMapper.selectBookingListByNamePhoneNumber(name, phoneNumber)) {
-			if(currentDate.compareTo(x.getDate()) > 0) continue;
-			else if(nearestBooking == null || nearestBooking.getDate().compareTo(x.getDate()) >= 0) nearestBooking = x;
-		}
-		
-		return nearestBooking;
+		// 없는 경우: [], 있는 경우: [...]
+		List<Booking> bookingList = bookingMapper.selectBookingListByNamePhoneNumber(name, phoneNumber);
+		return bookingList.isEmpty() ? null : bookingList.get(bookingList.size() - 1);
 	}
 
 }

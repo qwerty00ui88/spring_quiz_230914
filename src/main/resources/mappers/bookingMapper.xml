@@ -63,7 +63,6 @@
 			`booking`
 		WHERE
 			`name` = #{name}
-		AND
-			`phoneNumber` = #{phoneNumber}
+			AND `phoneNumber` = #{phoneNumber}
  	</select>
  </mapper>
