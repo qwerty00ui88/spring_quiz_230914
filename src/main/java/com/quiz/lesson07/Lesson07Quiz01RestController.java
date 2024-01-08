@@ -42,9 +42,9 @@ public class Lesson07Quiz01RestController {
 		CompanyEntity company = companyBO.addCompany(name, business, scale, headcount);
 		
 		return "<div>회사명 : " + company.getName() + "</div>"
-		+ "<div>사업내용 : " + company.getBusiness() + "</div>"
-		+ "<div>규모 : " + company.getScale() + "</div>"
-		+ "<div>사원수 : " + company.getHeadcount() + "명</div>";
+				+ "<div>사업내용 : " + company.getBusiness() + "</div>"
+				+ "<div>규모 : " + company.getScale() + "</div>"
+				+ "<div>사원수 : " + company.getHeadcount() + "명</div>";
 	}
 	
 }
