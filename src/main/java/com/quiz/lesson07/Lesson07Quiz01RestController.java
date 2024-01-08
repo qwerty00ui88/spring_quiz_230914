@@ -17,34 +17,26 @@ public class Lesson07Quiz01RestController {
 	
 	// http://localhost/lesson07/quiz01/save1
 	@GetMapping("/save1")
-	public String create1() {
-		String name = "넥손";
-		String business = "컨텐츠 게임";
-		String scale = "대기업";
-		int headcount = 3585;
-		
-		CompanyEntity company = companyBO.addCompany(name, business, scale, headcount);
-		
-		return "<div>회사명 : " + company.getName() + "</div>"
-				+ "<div>사업내용 : " + company.getBusiness() + "</div>"
-				+ "<div>규모 : " + company.getScale() + "</div>"
-				+ "<div>사원수 : " + company.getHeadcount() + "명</div>";
+	public CompanyEntity save1() {
+		return companyBO.addCompany("넥손", "컨텐츠 게임", "대기업", 3585);
 	}
 	
 	// http://localhost/lesson07/quiz01/save2
 	@GetMapping("/save2")
-	public String create2() {
-		String name = "버블팡";
-		String business = "여신 금융업";
-		String scale = "대기업";
-		int headcount = 6834;
-		
-		CompanyEntity company = companyBO.addCompany(name, business, scale, headcount);
-		
-		return "<div>회사명 : " + company.getName() + "</div>"
-				+ "<div>사업내용 : " + company.getBusiness() + "</div>"
-				+ "<div>규모 : " + company.getScale() + "</div>"
-				+ "<div>사원수 : " + company.getHeadcount() + "명</div>";
+	public CompanyEntity save2() {		
+		return companyBO.addCompany("버블팡", "여신 금융업", "대기업", 6834);
 	}
 	
+	// http://localhost/lesson07/quiz01/update
+	@GetMapping("/update")
+	public CompanyEntity update() {
+		return companyBO.updateCompanyScaleHeadcountById(22, "중소기업", 34);
+	}
+	
+	// http://localhost/lesson07/quiz01/delete
+	@GetMapping("/delete")
+	public String delete() {
+		companyBO.deleteCompanyById(22);
+		return "삭제 완료";
+	}
 }

@@ -19,7 +19,7 @@ import lombok.ToString;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
+@Builder(toBuilder = true) // toBuilder = true 객체 필드 수정 가능
 @Getter
 @Table(name="company")
 @Entity
