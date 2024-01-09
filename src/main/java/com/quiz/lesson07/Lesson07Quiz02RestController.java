@@ -20,37 +20,43 @@ public class Lesson07Quiz02RestController {
 
 	// http://localhost/lesson07/quiz02/1
 	@GetMapping("/1")
-	public RecruitEntity getRecruitById() {
+	public RecruitEntity quiz02_1() {
 		return recruitRepository.findById(8).orElse(null);
 	}
 
 	// http://localhost/lesson07/quiz02/2?companyId=1
 	@GetMapping("/2")
-	public List<RecruitEntity> getRecruitListByCompanyId(@RequestParam("companyId") int companyId) {
+	public List<RecruitEntity> quiz02_2(@RequestParam("companyId") int companyId) {
 		return recruitRepository.findByCompanyId(companyId);
 	}
 
 	// http://localhost/lesson07/quiz02/3
 	@GetMapping("/3")
-	public List<RecruitEntity> getRecruitListByPositionType() {
+	public List<RecruitEntity> quiz02_3() {
 		return recruitRepository.findByPositionAndType("웹 back-end 개발자", "정규직");
 	}
 
 	// http://localhost/lesson07/quiz02/4
 	@GetMapping("/4")
-	public List<RecruitEntity> getRecruitListByTypeSalary() {
+	public List<RecruitEntity> quiz02_4() {
 		return recruitRepository.findByTypeOrSalaryGreaterThanEqual("정규직", 9000);
 	}
 
 	// http://localhost/lesson07/quiz02/5
 	@GetMapping("/5")
-	public List<RecruitEntity> getRecruitListByType() {
+	public List<RecruitEntity> quiz02_5() {
 		return recruitRepository.findTop3ByTypeOrderBySalaryDesc("계약직");
 	}
 
 	// http://localhost/lesson07/quiz02/6
 	@GetMapping("/6")
-	public List<RecruitEntity> getRecruitListByRegionSalary() {
+	public List<RecruitEntity> quiz02_6() {
 		return recruitRepository.findByRegionAndSalaryBetween("성남시 분당구", 7000, 8500);
+	}
+	
+	// http://localhost/lesson07/quiz02/7
+	@GetMapping("/7")
+	public List<RecruitEntity> quiz02_7() {
+		return recruitRepository.findDeadlineSalaryType("2026-04-10", 8100, "정규직");
 	}
 }
